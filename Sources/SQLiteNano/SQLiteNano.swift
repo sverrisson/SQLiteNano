@@ -326,7 +326,7 @@ public class SQLiteNano: ObservableObject {
     
     private var tableName: String
     
-    init(_ tableName: String, open: Bool = true) {
+    public init(_ tableName: String, open: Bool = true) {
         self.tableName = tableName
         if open {
             self.open()
