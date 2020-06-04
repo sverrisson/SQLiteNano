@@ -48,7 +48,7 @@ public class SQLiteNano: ObservableObject {
     
     /// Total rows in the table
     /// - Returns: Int of numbers of rows
-    func countRows() -> Int {
+    public func countRows() -> Int {
         guard database != nil else {
             os_log(.error, "DB pointer is nil")
             return 0
@@ -87,7 +87,7 @@ public class SQLiteNano: ObservableObject {
     
     /// Delete all rows from the table
     /// - Returns: Bool of true if deleted, otherwise false
-    func deleteAllRows() -> Bool {
+    public func deleteAllRows() -> Bool {
         guard database != nil else {
             os_log(.error, "DB pointer is nil")
             return false
@@ -120,7 +120,7 @@ public class SQLiteNano: ObservableObject {
     /// Store Movies in the Movies table
     /// - Parameter movies: [Movie] movie array to insert to db
     /// - Returns: the number of movies inserted to the db
-    func storeMovies(_ movies: [Movie]) -> Int {
+    public func storeMovies(_ movies: [Movie]) -> Int {
         var counter = 0
         guard database != nil else {
             os_log(.error, "DB pointer is nil")
@@ -244,7 +244,7 @@ public class SQLiteNano: ObservableObject {
     
     /// Retrieve all movies from the Movie table
     /// - Returns: [Movie] all the movies in the table
-    func retrieveMovies() {
+    public func retrieveMovies() {
         var movies: [Movie] = []
         guard database != nil else {
             os_log(.error, "DB pointer is nil")
@@ -284,7 +284,7 @@ public class SQLiteNano: ObservableObject {
     /// Find movies from the Movie table for a given year
     /// - Parameter year: Int the year for the movie
     /// - Returns: [Movie] all movies for that year
-    func findMovieFor(year: Int) -> [Movie] {
+    public func findMovieFor(year: Int) -> [Movie] {
         var movies: [Movie] = []
         guard database != nil else {
             os_log(.error, "DB pointer is nil")
@@ -333,7 +333,7 @@ public class SQLiteNano: ObservableObject {
         }
     }
         
-    func open() {
+    public func open() {
         // Open or set up database if needed
         if let docsDirURL = try? FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(tableName).appendingPathExtension("db") {
             let filename = docsDirURL.absoluteString
@@ -368,7 +368,7 @@ public class SQLiteNano: ObservableObject {
         }
     }
     
-    func close() {
+    public func close() {
         // Destroy the statements
         os_log(.info, "Deinit")
         sqlite3_finalize(storeRowStmt)
