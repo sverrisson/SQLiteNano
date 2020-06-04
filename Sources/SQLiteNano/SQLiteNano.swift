@@ -11,7 +11,7 @@ import SQLite3
 import Foundation
 import os.log
 
-struct Movie: Codable, CustomStringConvertible, Identifiable, Equatable {
+public struct Movie: Codable, CustomStringConvertible, Identifiable, Equatable {
     var uuid: UUID
     var title: String
     var year: Int
