@@ -16,11 +16,11 @@ public struct Movie: Codable, CustomStringConvertible, Identifiable, Equatable {
     var title: String
     var year: Int
     
-    var id: UUID {
+    public var id: UUID {
         return uuid
     }
     
-    var description: String {
+    public var description: String {
         "(\(title)|\(year)|\(uuid.uuidString))"
     }
     
