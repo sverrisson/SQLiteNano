@@ -12,9 +12,9 @@ import Foundation
 import os.log
 
 public struct Movie: Codable, CustomStringConvertible, Identifiable, Equatable {
-    var uuid: UUID
-    var title: String
-    var year: Int
+    public var uuid: UUID
+    public var title: String
+    public var year: Int
     
     public var id: UUID {
         return uuid
