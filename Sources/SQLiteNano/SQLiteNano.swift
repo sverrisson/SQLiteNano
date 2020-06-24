@@ -24,7 +24,7 @@ public struct Movie: Codable, CustomStringConvertible, Identifiable, Equatable {
         "(\(title)|\(year)|\(uuid.uuidString))"
     }
     
-    init(title: String, year: Int, uuidString: String? = nil) {
+    public init(title: String, year: Int, uuidString: String? = nil) {
         self.title = title
         self.year = year
         if let uuidString = uuidString,
