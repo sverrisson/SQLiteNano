@@ -36,8 +36,16 @@ public struct Movie: Codable, CustomStringConvertible, Identifiable, Equatable {
     }
 }
 
+public enum DatabaseState {
+    case open
+    case opening
+    case closed
+    case closing
+    case undefined
+}
+
 public class SQLiteNano: ObservableObject {
-    @Published var movies: [Movie] = []
+    @Published public var movies: [Movie] = []
     
     var database: OpaquePointer?
     var storeRowStmt: OpaquePointer?
@@ -45,6 +53,8 @@ public class SQLiteNano: ObservableObject {
     var retrieveRowStmt: OpaquePointer?
     var findMovieStmt: OpaquePointer?
     var countStmt: OpaquePointer?
+    public private(set) var databaseState: DatabaseState = .undefined
+    
     
     /// Total rows in the table
     /// - Returns: Int of numbers of rows
@@ -335,6 +345,13 @@ public class SQLiteNano: ObservableObject {
         
     public func open() {
         // Open or set up database if needed
+        guard databaseState == .undefined || databaseState == .closed else {
+            os_log(.error, "Database already open")
+            return
+        }
+        // Set state to open
+        databaseState = .open
+        
         if let docsDirURL = try? FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent(tableName).appendingPathExtension("db") {
             let filename = docsDirURL.absoluteString
             
@@ -362,13 +379,16 @@ public class SQLiteNano: ObservableObject {
             }
             os_log(.info, "ThreadSafe: %d", sqlite3_threadsafe())
             os_log(.info, "Setup table finished, path: %@", filename)
-            
-            // Compile all sql requests
-            
         }
     }
     
     public func close() {
+        guard databaseState == .open else {
+            os_log(.error, "Database already closing")
+            return
+        }
+        databaseState = .closed
+        
         // Destroy the statements
         os_log(.info, "Deinit")
         sqlite3_finalize(storeRowStmt)
