@@ -10,11 +10,11 @@ final class SQLiteNanoTests: XCTestCase {
         }
         
         let list = [
-        Movie(title: "3🟨🟦🟥 : Red", year: 1994),
-        Movie(title: "Boyhood👦", year: 2014),
-        Movie(title: "Citizen Kane", year: 1941),
-        Movie(title: "The 📷Godfather", year: 1972),
-        Movie(title: "Casablanca🎥", year: 1943),
+            Movie(title: "3🟨🟦🟥 : Red", year: 1994),
+            Movie(title: "Boyhood👦", year: 2014),
+            Movie(title: "Citizen Kane", year: 1941),
+            Movie(title: "The 📷Godfather", year: 1972),
+            Movie(title: "Casablanca🎥", year: 1943),
         ].shuffled()
         guard database.storeMovies(list) >= 0 else {
             fatalError("Could not store movies")
@@ -37,26 +37,26 @@ final class SQLiteNanoTests: XCTestCase {
         }
         
         let list = [
-        Movie(title: "Three Colors: Red", year: 1994),
-        Movie(title: "Boyhood", year: 2014),
-        Movie(title: "Citizen Kane", year: 1941),
-        Movie(title: "The Godfather", year: 1972),
-        Movie(title: "Casablanca", year: 1943),
-        Movie(title: "Three Colors: Red", year: 1994),
-        Movie(title: "Boyhood", year: 2014),
-        Movie(title: "Citizen Kane", year: 1941),
-        Movie(title: "The Godfather", year: 1972),
-        Movie(title: "Casablanca", year: 1943),
-        Movie(title: "Three Colors: Red", year: 1994),
-        Movie(title: "Boyhood", year: 2014),
-        Movie(title: "Citizen Kane", year: 1941),
-        Movie(title: "The Godfather", year: 1972),
-        Movie(title: "Casablanca", year: 1943),
-        Movie(title: "Three Colors: Red", year: 1994),
-        Movie(title: "Boyhood", year: 2014),
-        Movie(title: "Citizen Kane", year: 1941),
-        Movie(title: "The Godfather", year: 1972),
-        Movie(title: "Casablanca", year: 1943),
+            Movie(title: "Three Colors: Red", year: 1994),
+            Movie(title: "Boyhood", year: 2014),
+            Movie(title: "Citizen Kane", year: 1941),
+            Movie(title: "The Godfather", year: 1972),
+            Movie(title: "Casablanca", year: 1943),
+            Movie(title: "Three Colors: Red", year: 1994),
+            Movie(title: "Boyhood", year: 2014),
+            Movie(title: "Citizen Kane", year: 1941),
+            Movie(title: "The Godfather", year: 1972),
+            Movie(title: "Casablanca", year: 1943),
+            Movie(title: "Three Colors: Red", year: 1994),
+            Movie(title: "Boyhood", year: 2014),
+            Movie(title: "Citizen Kane", year: 1941),
+            Movie(title: "The Godfather", year: 1972),
+            Movie(title: "Casablanca", year: 1943),
+            Movie(title: "Three Colors: Red", year: 1994),
+            Movie(title: "Boyhood", year: 2014),
+            Movie(title: "Citizen Kane", year: 1941),
+            Movie(title: "The Godfather", year: 1972),
+            Movie(title: "Casablanca", year: 1943),
         ].shuffled()
         guard database.storeMovies(list) >= 0 else {
             fatalError("Could not store movies")
@@ -67,7 +67,7 @@ final class SQLiteNanoTests: XCTestCase {
         XCTAssertEqual(list.count, rowsCount)
         database.close()
     }
-
+    
     static var allTests = [
         ("testExample", testExample),
         ("testUTF", testUTF),
